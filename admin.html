@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Gulshan Clinic</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+          <img src="images/clinic-logo.jpg" alt="Doctor Gulshan Family Medicine Clinic" class="header-logo">
+          <span style="font-weight: bold; color: var(--primary-dark); font-size: 16px; border-left: 2px solid var(--border); padding-left: 10px; margin-left: 2px;">Admin</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
+      <nav class="desktop-nav">
+        <a href="/">Home</a>
+        <div id="user-badge">
+          <span class="user-name" id="user-name"></span>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h3>Admin</h3>
+      <a href="#" class="active" data-tab="patients">Patient Records</a>
+      <a href="#" data-tab="clinic">Clinic Info</a>
+    </aside>
+
+    <main class="admin-content">
+      <!-- ===== PATIENTS TAB ===== -->
+      <section id="tab-patients">
+        <h2>Patient Records</h2>
+        <div class="admin-toolbar">
+          <input type="text" id="search-input" placeholder="Search by name or phone...">
+          <select id="visit-filter">
+            <option value="all">All Visit Types</option>
+            <option value="first_time">First Time</option>
+            <option value="returning">Returning</option>
+          </select>
+          <select id="payment-filter">
+            <option value="all">All Payments</option>
+            <option value="in_clinic">In Clinic</option>
+            <option value="online">Online</option>
+          </select>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Phone</th>
+              <th>Visit Type</th>
+              <th>Payment</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="patients-tbody">
+            <tr class="empty"><td colspan="7">Loading...</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== CLINIC INFO TAB ===== -->
+      <section id="tab-clinic" class="hidden">
+        <h2>Edit Clinic Information</h2>
+        <div class="form-card" style="max-width:100%;">
+          <form id="clinic-form">
+            <div class="form-group">
+              <label for="edit-clinic-name">Clinic Name</label>
+              <input type="text" id="edit-clinic-name">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="edit-email">Email</label>
+                <input type="email" id="edit-email">
+              </div>
+              <div class="form-group">
+                <label for="edit-phone">Phone</label>
+                <input type="text" id="edit-phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edit-support-email">Support Email</label>
+              <input type="email" id="edit-support-email">
+            </div>
+            <div class="form-group">
+              <label for="edit-address">Address</label>
+              <input type="text" id="edit-address">
+            </div>
+            <div class="form-group">
+              <label for="edit-maps-link">Google Maps Link</label>
+              <input type="url" id="edit-maps-link" placeholder="https://maps.google.com/...">
+            </div>
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <div class="form-message" id="clinic-msg"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
