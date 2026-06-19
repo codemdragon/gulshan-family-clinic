@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In: Gulshan Clinic</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <a href="/" style="display: block;"><img src="images/clinic-logo.jpg"
+            alt="Doctor Gulshan Family Medicine Clinic" class="header-logo"></a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
+      <nav class="desktop-nav">
+        <a href="/">Home</a>
+        <a href="/">Book Appointment</a>
+        <a href="/login.html" class="btn-outline">Sign In</a>
+        <div id="user-badge">
+          <span class="user-name" id="user-name"></span>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo-area">
+        <img src="images/clinic-logo.jpg" alt="Doctor Gulshan Family Medicine Clinic Logo" class="auth-logo">
+      </div>
+      <!-- Login Form -->
+      <form id="login-form">
+        <h2>Sign In</h2>
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required placeholder="Your password">
+        </div>
+        <button type="submit" class="btn-submit">Sign In</button>
+        <div class="form-message" id="login-msg"></div>
+        <div class="auth-toggle">
+          Don't have an account? <a id="show-signup">Create one</a>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="hidden">
+        <h2>Create Account</h2>
+        <div class="form-group">
+          <label for="signup-name">Full Name <span class="required">*</span></label>
+          <input type="text" id="signup-name" required placeholder="e.g., Ahmed Khan">
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email <span class="required">*</span></label>
+          <input type="email" id="signup-email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="signup-phone">Phone Number</label>
+          <input type="tel" id="signup-phone" placeholder="+92-300-1234567">
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password <span class="required">*</span></label>
+          <input type="password" id="signup-password" required minlength="6" placeholder="At least 6 characters">
+        </div>
+        <button type="submit" class="btn-submit">Create Account</button>
+        <div class="form-message" id="signup-msg"></div>
+        <div class="auth-toggle">
+          Already have an account? <a id="show-login">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <img src="images/clinic-logo.jpg" alt="Doctor Gulshan Family Medicine Clinic" class="footer-logo">
+        <p>Providing quality healthcare with compassion and expertise.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p id="footer-phone">+92-300-1234567</p>
+        <p id="footer-email">info@gulshanclinic.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/">Home</a><br>
+        <a href="/">Book Appointment</a><br>
+        <a href="/login.html">My Account</a><br>
+        <a href="/admin.html">Admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Gulshan Clinic Family. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+
+</html>
