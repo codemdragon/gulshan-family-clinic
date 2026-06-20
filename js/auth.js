@@ -98,6 +98,13 @@ async function signOut() {
   await renderUserBadge(null);
 }
 
+async function sendPasswordReset(email) {
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/reset-password.html',
+  });
+  if (error) throw error;
+}
+
 // Re-authenticate the current user (used to confirm sensitive actions, e.g. inviting an admin)
 async function reauthenticate(password) {
   if (!currentUser?.email) throw new Error('No active session.');
@@ -165,10 +172,14 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
 function initAuthForms() {
   const loginForm = document.getElementById('login-form');
   const signupForm = document.getElementById('signup-form');
+  const forgotForm = document.getElementById('forgot-form');
   const showSignup = document.getElementById('show-signup');
   const showLogin = document.getElementById('show-login');
+  const showForgot = document.getElementById('show-forgot');
+  const backToLoginFromForgot = document.getElementById('back-to-login-from-forgot');
   const loginMsg = document.getElementById('login-msg');
   const signupMsg = document.getElementById('signup-msg');
+  const forgotMsg = document.getElementById('forgot-msg');
   const confirmCard = document.getElementById('confirm-email-card');
   const confirmEmailAddress = document.getElementById('confirm-email-address');
   const confirmBackBtn = document.getElementById('confirm-email-back-btn');
@@ -186,6 +197,40 @@ function initAuthForms() {
       e.preventDefault();
       signupForm.classList.add('hidden');
       loginForm.classList.remove('hidden');
+    });
+  }
+
+  if (showForgot) {
+    showForgot.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.classList.add('hidden');
+      forgotForm.classList.remove('hidden');
+    });
+  }
+
+  if (backToLoginFromForgot) {
+    backToLoginFromForgot.addEventListener('click', (e) => {
+      e.preventDefault();
+      forgotForm.classList.add('hidden');
+      loginForm.classList.remove('hidden');
+    });
+  }
+
+  if (forgotForm) {
+    forgotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('forgot-email').value;
+      forgotMsg.className = 'form-message';
+      forgotMsg.textContent = 'Sending reset link...';
+      forgotMsg.style.display = 'block';
+      try {
+        await sendPasswordReset(email);
+        forgotMsg.className = 'form-message success';
+        forgotMsg.textContent = `If an account exists for ${email}, a reset link has been sent. Check your inbox.`;
+      } catch (err) {
+        forgotMsg.className = 'form-message error';
+        forgotMsg.textContent = err.message;
+      }
     });
   }
 

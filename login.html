@@ -65,7 +65,25 @@
         <button type="submit" class="btn-submit">Sign In</button>
         <div class="form-message" id="login-msg"></div>
         <div class="auth-toggle">
+          <a id="show-forgot">Forgot password?</a>
+        </div>
+        <div class="auth-toggle">
           Don't have an account? <a id="show-signup">Create one</a>
+        </div>
+      </form>
+
+      <!-- Forgot Password Form -->
+      <form id="forgot-form" class="hidden">
+        <h2>Reset Password</h2>
+        <p class="subtitle" style="margin-bottom:18px;">Enter your account email and we'll send you a link to reset your password.</p>
+        <div class="form-group">
+          <label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" required placeholder="you@example.com">
+        </div>
+        <button type="submit" class="btn-submit">Send Reset Link</button>
+        <div class="form-message" id="forgot-msg"></div>
+        <div class="auth-toggle">
+          <a id="back-to-login-from-forgot">Back to Sign In</a>
         </div>
       </form>
 

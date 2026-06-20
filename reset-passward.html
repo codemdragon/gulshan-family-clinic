@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password: Gulshan Clinic</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <a href="/" style="display: block;"><img src="images/clinic-logo.jpg"
+            alt="Doctor Gulshan Family Medicine Clinic" class="header-logo"></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo-area">
+        <img src="images/clinic-logo.jpg" alt="Doctor Gulshan Family Medicine Clinic Logo" class="auth-logo">
+      </div>
+
+      <!-- Shown while we verify the reset link -->
+      <div id="reset-checking">
+        <h2 style="text-align:center;">Verifying link...</h2>
+        <p class="subtitle" style="text-align:center; margin-top:10px;">One moment please.</p>
+      </div>
+
+      <!-- Shown if the link is invalid/expired -->
+      <div id="reset-invalid" class="hidden" style="text-align:center;">
+        <h2>Link Expired or Invalid</h2>
+        <p class="subtitle" style="margin:14px 0 20px;">This password reset link is no longer valid. Please request a new one.</p>
+        <a href="/login.html" class="btn-submit" style="display:inline-block; padding:12px 28px;">Back to Sign In</a>
+      </div>
+
+      <!-- New password form -->
+      <form id="reset-password-form" class="hidden">
+        <h2>Set a New Password</h2>
+        <div class="form-group">
+          <label for="new-password">New Password <span class="required">*</span></label>
+          <input type="password" id="new-password" required minlength="6" placeholder="At least 6 characters">
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password <span class="required">*</span></label>
+          <input type="password" id="confirm-password" required minlength="6" placeholder="Re-enter password">
+        </div>
+        <button type="submit" class="btn-submit">Update Password</button>
+        <div class="form-message" id="reset-password-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      &copy; 2026 Gulshan Clinic Family. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/reset-password.js"></script>
+</body>
+
+</html>
