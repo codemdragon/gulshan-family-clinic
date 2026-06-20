@@ -33,6 +33,7 @@
       <h3>Admin</h3>
       <a href="#" class="active" data-tab="patients">Patient Records</a>
       <a href="#" data-tab="clinic">Clinic Info</a>
+      <a href="#" data-tab="admins">Admins</a>
     </aside>
 
     <main class="admin-content">
@@ -62,6 +63,7 @@
               <th>Visit Type</th>
               <th>Payment</th>
               <th>Date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="patients-tbody">
@@ -106,7 +108,54 @@
           </form>
         </div>
       </section>
+
+      <!-- ===== ADMINS TAB ===== -->
+      <section id="tab-admins" class="hidden">
+        <h2>Manage Admins</h2>
+
+        <div class="form-card" style="max-width:100%; margin-bottom:24px;">
+          <h2 style="font-size:16px;">Invite a New Admin</h2>
+          <p class="subtitle">The invited person must already have an account, and must accept the invite themselves after you send it. You'll be asked to confirm your password before sending.</p>
+          <form id="invite-admin-form">
+            <div class="form-group">
+              <label for="invite-email">Email Address <span class="required">*</span></label>
+              <input type="email" id="invite-email" required placeholder="person@example.com">
+            </div>
+            <button type="submit" class="btn-submit" style="width:auto; padding:10px 24px;">Send Invite</button>
+            <div class="form-message" id="invite-msg"></div>
+          </form>
+        </div>
+
+        <div class="form-card" style="max-width:100%; margin-bottom:24px;">
+          <h2 style="font-size:16px; margin-bottom:14px;">Pending &amp; Past Invites</h2>
+          <div id="invites-list"><p class="subtitle">Loading...</p></div>
+        </div>
+
+        <div class="form-card" style="max-width:100%;">
+          <h2 style="font-size:16px; margin-bottom:14px;">Current Admins</h2>
+          <div id="admins-list"><p class="subtitle">Loading...</p></div>
+        </div>
+      </section>
     </main>
+  </div>
+
+  <!-- ===== RE-AUTH MODAL (for sensitive actions) ===== -->
+  <div class="modal-overlay" id="reauth-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Confirm It's You</h2>
+        <button class="modal-close" type="button" id="reauth-close-btn">&times;</button>
+      </div>
+      <p class="subtitle" id="reauth-context-msg" style="margin-bottom:16px;">Please re-enter your password to continue.</p>
+      <form id="reauth-form">
+        <div class="form-group">
+          <label for="reauth-password">Password</label>
+          <input type="password" id="reauth-password" required placeholder="Your password">
+        </div>
+        <button type="submit" class="btn-submit">Confirm</button>
+        <div class="form-message" id="reauth-msg"></div>
+      </form>
+    </div>
   </div>
 
   <script src="js/auth.js"></script>

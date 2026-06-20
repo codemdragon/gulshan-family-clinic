@@ -1,7 +1,7 @@
 // ===== APPOINTMENT FORM =====
 
 async function submitAppointment(formData) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('patients')
     .insert([{
       user_id: currentUser.id,
@@ -81,7 +81,7 @@ function initAppointmentForm() {
 // ===== CLINIC INFO (footer) =====
 
 async function loadClinicInfo() {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('clinic_info')
     .select('*')
     .eq('id', 1)
